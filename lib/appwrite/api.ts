@@ -278,10 +278,41 @@ export async function uploadSubmission(
       }
     );
 
+    await updateParticipantProgress(challengeId, userId);
+
     return submission;
   } catch (error) {
     console.error('Upload failed:', error);
     throw error;
+  }
+}
+
+export async function updateParticipantProgress(challengeId: string, userId: string) {
+  try {
+    const submissions = await tablesDB.listRows(
+      DB_ID,
+      'submissions',
+      [Query.equal('challengeId', challengeId), Query.equal('userId', userId)]
+    );
+    
+    const submissionCount = submissions.rows.length;
+    
+    const challenge = await getChallengeById(challengeId);
+    const progress = challenge?.durationDays 
+      ? Math.round((submissionCount / challenge.durationDays) * 100) 
+      : Math.round((submissionCount / 7) * 100);
+
+    const participants = await getChallengeParticipants(challengeId);
+    const participant = participants.find((p) => p.userId === userId);
+    
+    if (participant?.$id) {
+      await tablesDB.updateRow(DB_ID, 'challenge_participants', participant.$id, {
+        submissionCount,
+        progress,
+      });
+    }
+  } catch (error) {
+    console.error('Error updating participant progress:', error);
   }
 }
 

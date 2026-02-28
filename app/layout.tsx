@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Navbar } from '@/components/common/Navbar'
+import { ThemeProvider } from '@/components/ThemeProvider'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -42,12 +43,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased bg-gray-50 text-gray-900">
-        <Navbar />
-        <div className="max-w-4xl mx-auto md:border-x md:border-gray-200 min-h-screen bg-white md:bg-gray-50">
-          {children}
-        </div>
+    <html lang="en" suppressHydrationWarning>
+      <body className="font-sans antialiased bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+        <ThemeProvider>
+          <Navbar />
+          <div className="max-w-4xl mx-auto md:border-x md:border-gray-200 dark:md:border-gray-700 min-h-screen bg-white dark:bg-gray-800 md:bg-gray-50 dark:md:bg-gray-900">
+            {children}
+          </div>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

@@ -30,10 +30,10 @@ export function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
       {/* Header */}
       <div className="pt-12 pb-6 px-4">
-        <Link href="/" className="inline-flex items-center gap-1 text-gray-500 hover:text-gray-900">
+        <Link href="/" className="inline-flex items-center gap-1 text-gray-500 hover:text-gray-900 dark:hover:text-white">
           <ArrowLeft className="w-4 h-4" />
           <span className="text-sm">Back</span>
         </Link>
@@ -47,21 +47,21 @@ export function LoginForm() {
               <Flame className="w-10 h-10 text-[#c8f135]" />
             </div>
             <h1 className="text-2xl font-black uppercase tracking-tight mb-1">
-              <span className="text-gray-900">PROVE</span>
+              <span className="text-gray-900 dark:text-white">PROVE</span>
               <span className="text-[#ff3d6b]">IT</span>
             </h1>
-            <p className="text-gray-500 text-sm">Welcome back!</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">Welcome back!</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
-              <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600">
+              <div className="rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-3 text-sm text-red-600 dark:text-red-400">
                 {error}
               </div>
             )}
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-gray-600 tracking-widest uppercase ml-1">
+              <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-widest uppercase ml-1">
                 Email
               </label>
               <input
@@ -71,12 +71,12 @@ export function LoginForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={loading}
-                className="w-full bg-white border border-gray-300 rounded-xl px-4 py-3.5 text-gray-900 placeholder-gray-400 text-base focus:outline-none focus:border-[#c8f135] focus:ring-2 focus:ring-[#c8f135]/20 transition-all disabled:opacity-50"
+                className="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 text-base focus:outline-none focus:border-[#c8f135] focus:ring-2 focus:ring-[#c8f135]/20 transition-all disabled:opacity-50"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-gray-600 tracking-widest uppercase ml-1">
+              <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-widest uppercase ml-1">
                 Password
               </label>
               <input
@@ -86,7 +86,7 @@ export function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={loading}
-                className="w-full bg-white border border-gray-300 rounded-xl px-4 py-3.5 text-gray-900 placeholder-gray-400 text-base focus:outline-none focus:border-[#c8f135] focus:ring-2 focus:ring-[#c8f135]/20 transition-all disabled:opacity-50"
+                className="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 text-base focus:outline-none focus:border-[#c8f135] focus:ring-2 focus:ring-[#c8f135]/20 transition-all disabled:opacity-50"
               />
             </div>
 
@@ -99,7 +99,7 @@ export function LoginForm() {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
             Don&apos;t have an account?{' '}
             <Link href="/auth/signup" className="text-[#c8f135] font-semibold hover:underline">
               Sign up
